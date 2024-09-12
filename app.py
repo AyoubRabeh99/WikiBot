@@ -48,12 +48,12 @@ if api_key_input:
     # Fonction pour générer un résumé du texte donné avec l'API OpenAI
     def summarize_text(text):
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo-16k",
+            model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": "Vous êtes un assistant spécialisé dans le résumé de textes."},
                 {"role": "user", "content": f"Voici un texte. Merci de le résumer de manière concise : {text}"}
             ],
-            max_tokens=500,
+            max_tokens=10000,
             temperature=0.5
         )
         return response.choices[0].message['content']
@@ -61,12 +61,12 @@ if api_key_input:
     # Fonction pour traduire le texte donné avec l'API OpenAI
     def translate_text(text, target_language):
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo-16k",
+            model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": "Vous êtes un assistant spécialisé dans la traduction de textes."},
                 {"role": "user", "content": f"Voici un texte. Merci de le traduire en {target_language} : {text}"}
             ],
-            max_tokens=500,
+            max_tokens=10000,
             temperature=0.5
         )
         return response.choices[0].message['content']
@@ -77,9 +77,9 @@ if api_key_input:
         conversation_history.append({"role": "user", "content": user_question})
 
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo-16k",
+            model="gpt-4o-mini",
             messages=conversation_history,
-            max_tokens=500,
+            max_tokens=10000,
             temperature=0.5
         )
 
